@@ -37,4 +37,10 @@ public class StudentController {
     {
         studentService.updateStudent(student);
     }
+
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Student addStudent(@RequestBody Student student)
+    {
+        return studentService.insertStudent(student);
+    }
 }

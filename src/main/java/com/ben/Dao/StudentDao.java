@@ -14,14 +14,26 @@ public class StudentDao {
     @Autowired
     private static Map<Integer, Student> students;
 
+    private int studentCount = 0;
+
     static {
         students = new HashMap<Integer, Student>() {
             {
-                put(1, new Student(1, "Ben", "Computer Science"));
-                put(2, new Student(2, "Kate", "Mathematics"));
-                put(3, new Student(3, "Jon", "Chemical Engineering"));
+//                put(1, new Student(1, "Ben", "Computer Science"));
+//                put(2, new Student(2, "Kate", "Mathematics"));
+//                put(3, new Student(3, "Jon", "Chemical Engineering"));
             }
         };
+    }
+
+    public int getStudentCount()
+    {
+        return this.studentCount;
+    }
+
+    public void incrStudentCount()
+    {
+        this.studentCount ++;
     }
 
     public Collection<Student> getAllStudents() {
@@ -43,5 +55,12 @@ public class StudentDao {
 
     public void removeStudentById(int id) {
         this.students.remove(id);
+    }
+
+    public Student insertStudent(Student student) {
+        this.incrStudentCount();
+        student.setId(this.getStudentCount());
+        this.students.put(student.getId(), student);
+        return this.students.get(this.getStudentCount());
     }
 }
