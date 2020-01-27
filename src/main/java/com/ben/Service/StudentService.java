@@ -30,4 +30,8 @@ public class StudentService {
     {
         this.studentDao.updateStudent(student);
     }
+
+    public Student insertStudent(Student student) {
+        return this.studentDao.insertStudent(student);
+    }
 }
